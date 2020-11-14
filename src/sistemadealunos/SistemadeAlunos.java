@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 public class SistemadeAlunos {
     
-  static ArrayList<Aluno> cadastroDeAlunos=new ArrayList<Aluno>();
-  static ArrayList<Professor> cadastroDeProfessores=new ArrayList<Professor>();
+  static ArrayList<Aluno> cadastroDeAlunos= new ArrayList<>();
+  static ArrayList<Professor> cadastroDeProfessores= new ArrayList<>();
    
     public static void main(String[] args) 
     {
@@ -38,32 +38,22 @@ public class SistemadeAlunos {
                 
         System.out.print(" ---- Selecione uma Opcao: ");
         select = ler.nextInt();
-            
-            switch (select){
-                case 1: cadastrarAlunos();
-                break;
-                case 2: cadastrarProfessores();
-                break;
-                case 3: exibirCadastroDeAlunos();
-                break;
-                case 4: exibirCadastroDeProfessores();
-                break;
-                case 5: excluirCadastroDeAlunos();
-                break;
-                case 6: excluirCadastroDeProfessores();
-                break;
-                case 7: modificarCadastroDeAlunos();
-                break;
-                case 8: modificarCadastroDeProfessores();
-                break;
-                case 9: modificarNotasDeAlunos();
-                break;
-                
-                default : {
-                    System.out.println("\n!Opcao Invalida!\n");
-                    menu();
-                    }
+
+        switch (select) {
+            case 1 -> cadastrarAlunos();
+            case 2 -> cadastrarProfessores();
+            case 3 -> exibirCadastroDeAlunos();
+            case 4 -> exibirCadastroDeProfessores();
+            case 5 -> excluirCadastroDeAlunos();
+            case 6 -> excluirCadastroDeProfessores();
+            case 7 -> modificarCadastroDeAlunos();
+            case 8 -> modificarCadastroDeProfessores();
+            case 9 -> modificarNotasDeAlunos();
+            default -> {
+                System.out.println("\n!Opcao Invalida!\n");
+                menu();
             }
+        }
     }
 
 
@@ -128,10 +118,10 @@ public class SistemadeAlunos {
             }else{
             
             System.out.println("\n..................... Cadastro de Alunos ....................\n");
-            
-            for (int i=0; i<cadastroDeAlunos.size();i++){
-                    cadastroDeAlunos.get(i).Exibir();
-                    cadastroDeAlunos.get(i).media();
+
+            for (Aluno cadastroDeAluno : cadastroDeAlunos) {
+                cadastroDeAluno.Exibir();
+                cadastroDeAluno.media();
             }
             System.out.println("\n..............................................................\n");
         }
@@ -147,9 +137,9 @@ public class SistemadeAlunos {
             }else{
             
             System.out.println("\n..................... Cadastro de Professores ....................\n");
-            
-            for (int i=0; i<cadastroDeProfessores.size();i++){
-                    cadastroDeProfessores.get(i).Exibir();          
+
+            for (Professor cadastroDeProfessore : cadastroDeProfessores) {
+                cadastroDeProfessore.Exibir();
             }
             System.out.println("\n..............................................................\n");
         }
@@ -222,48 +212,43 @@ public class SistemadeAlunos {
             
             System.out.print("Digite a Matricula do Aluno: ");
             modif = ler.nextInt();
-            
-            for (int i=0; i<cadastroDeAlunos.size();i++){
-                if(modif == cadastroDeAlunos.get(i).matricula){
-                    
-                    
-                    System.out.println("Selecione o campo do cadastro de " + cadastroDeAlunos.get(i).nome + " que deseja modificar: ");
+
+            for (Aluno cadastroDeAluno : cadastroDeAlunos) {
+                if (modif == cadastroDeAluno.matricula) {
+
+
+                    System.out.println("Selecione o campo do cadastro de " + cadastroDeAluno.nome + " que deseja modificar: ");
                     System.out.println("-------- [1] - Modificar NOME -");
                     System.out.println("-------- [2] - Modificar MATRICULA -\n");
                     select = ler.nextInt();
-                    
-                    switch(select){
-                        
-                        case 1:
+
+                    switch (select) {
+                        case 1 -> {
                             System.out.println("Digite o novo Nome: ");
                             novoNome = ler.nextLine();
-                            cadastroDeAlunos.get(i).setNome(novoNome);
-                            
+                            cadastroDeAluno.setNome(novoNome);
                             System.out.println("Nome Atualizado!");
                             menu();
-                        break;    
-                        
-                        case 2:
-                            System.out.print("Didite nova Matricula: " );
+                        }
+                        case 2 -> {
+                            System.out.print("Didite nova Matricula: ");
                             novaMatricula = ler.nextInt();
-                            cadastroDeAlunos.get(i).setMatricula(novaMatricula);
-                            
+                            cadastroDeAluno.setMatricula(novaMatricula);
                             System.out.println("Matricula Atualizada! ");
                             menu();
-                        break;
-                        
-                        default :
+                        }
+                        default -> {
                             System.out.println("ERRO! Opcao Invalida! Selecione [1] ou [2]\n");
-                            modificarCadastroDeAlunos();   
+                            modificarCadastroDeAlunos();
+                        }
                     }
-                    
-                    
-                
-            }else{
+
+
+                } else {
                     System.out.println("Matricula nao encontrada! Digite uma Matricula Valida.");
                     modificarCadastroDeAlunos();
                 }
-        }
+            }
     }   
         
    }
@@ -285,51 +270,50 @@ public class SistemadeAlunos {
             
             System.out.print("Digite o RA do Professor: ");
             modif = ler.nextInt();
-            
-            for (int i=0; i<cadastroDeProfessores.size();i++){
-                if(modif == cadastroDeProfessores.get(i).RA){
-                    
-                    
-                    System.out.println("Selecione o campo do cadastro de" + cadastroDeProfessores.get(i).nome + " que deseja modificar: ");
+
+            for (Professor cadastroDeProfessore : cadastroDeProfessores) {
+                if (modif == cadastroDeProfessore.RA) {
+
+
+                    System.out.println("Selecione o campo do cadastro de" + cadastroDeProfessore.nome + " que deseja modificar: ");
                     System.out.println("-------- [1] - Modificar NOME -");
                     System.out.println("-------- [2] - Modificar RA -");
                     System.out.println("-------- [3] - Modificar Salario -");
                     select = ler.nextInt();
-                    
-                    switch(select){
-                        
+
+                    switch (select) {
+
                         case 1:
                             System.out.print("Digite o novo Nome: ");
-                            cadastroDeProfessores.get(i).setNome(novoNome);
+                            cadastroDeProfessore.setNome(novoNome);
                             System.out.println("Nome modificado com sucesso!\n");
                             menu();
-                        break;    
-                        
+                            break;
+
                         case 2:
-                            System.out.print("Didite nova RA: " );
-                            cadastroDeProfessores.get(i).setRA(novoRA);
+                            System.out.print("Didite nova RA: ");
+                            cadastroDeProfessore.setRA(novoRA);
                             System.out.println("RA modificado com sucesso!");
                             menu();
-                        break;
-                        
+                            break;
+
                         case 3:
                             System.out.println("Informe o salario Atualizado: ");
-                            cadastroDeProfessores.get(i).setSalario(novoSalario);
+                            cadastroDeProfessore.setSalario(novoSalario);
                             System.out.println("Salario Atualizado com sucesso!");
                             menu();
-                        
-                        default :
+
+                        default:
                             System.out.println("ERRO! Opcao Invalida! Selecione [1] , [2] ou [3]\n");
-                            modificarCadastroDeProfessores();   
+                            modificarCadastroDeProfessores();
                     }
-                    
-                    
-                
-            }else{
+
+
+                } else {
                     System.out.println("Registro nao encontrado! Digite um RA Valido.");
                     modificarCadastroDeProfessores();
                 }
-        }
+            }
     }
     }
     
@@ -338,7 +322,7 @@ public class SistemadeAlunos {
        
       int modif, select;
       
-      float novoAV1 = 0 , novoAV2 = 0, novoAV3 = 0;
+      float novoAV1, novoAV2, novoAV3;
       
       if(cadastroDeAlunos.size() == 0){
             System.out.println("\n ****Nenhum Aluno cadastrado!**** \nPor favor, selecione a Opcao [1] para cadastrar novos Alunos.\n\n");
@@ -349,52 +333,48 @@ public class SistemadeAlunos {
           
             System.out.print("Digite a Matricula do Aluno: ");
             modif = ler.nextInt();
-            
-            for (int i=0; i<cadastroDeAlunos.size();i++){
-                if(modif == cadastroDeAlunos.get(i).matricula){
-                    
-                    System.out.print("Selecione a nota de " + cadastroDeAlunos.get(i).nome + " que deseja alterar: ");
-                    System.out.print("\n[1] - AV1 \n[2] - AV2 \n[3] - AV3\n");
-                    select = ler.nextInt();
-                    
-                    switch (select){
-                        case 1: 
-                            System.out.println("Nota atul da AV1: " + cadastroDeAlunos.get(i).nota1);
-                            System.out.print("Informe a nota atualizada da AV1: ");
-                            novoAV1 = ler.nextFloat();
-                            cadastroDeAlunos.get(i).setNota1(novoAV1);
-                            System.out.println("Nota da AV1 Atualizada!\n");
-                            menu();
-                        break;
-                        
-                        case 2: 
-                            System.out.println("Nota atul da AV2: " + cadastroDeAlunos.get(i).nota2);
-                            System.out.print("Informe a nota atualizada da AV2: ");
-                            novoAV2 = ler.nextFloat();
-                            cadastroDeAlunos.get(i).setNota2(novoAV2);
-                            System.out.println("Nota da AV2 atualizada!\n");
-                            menu();
-                        break;
-                        
-                        case 3: 
-                            System.out.println("Nota atul da AV3: " + cadastroDeAlunos.get(i).nota3);
-                            System.out.print("Informe a nota atualizada da AV3: ");
-                            novoAV3 = ler.nextFloat();
-                            cadastroDeAlunos.get(i).setNota3(novoAV3);
-                            System.out.println("Nota da AV3 Atualizada!\n");
-                            menu();
-                        break;
-                    
-                    
-                    }
-                    
-                }else{
-                    System.out.println("Aluno nao encontrado! Por favor, informe uma Matricula valida.");
-                    modificarNotasDeAlunos();
-                }
-                    
-                    
-      }         
+
+          for (Aluno cadastroDeAluno : cadastroDeAlunos) {
+              if (modif == cadastroDeAluno.matricula) {
+
+                  System.out.print("Selecione a nota de " + cadastroDeAluno.nome + " que deseja alterar: ");
+                  System.out.print("\n[1] - AV1 \n[2] - AV2 \n[3] - AV3\n");
+                  select = ler.nextInt();
+
+                  switch (select) {
+                      case 1 -> {
+                          System.out.println("Nota atul da AV1: " + cadastroDeAluno.nota1);
+                          System.out.print("Informe a nota atualizada da AV1: ");
+                          novoAV1 = ler.nextFloat();
+                          cadastroDeAluno.setNota1(novoAV1);
+                          System.out.println("Nota da AV1 Atualizada!\n");
+                          menu();
+                      }
+                      case 2 -> {
+                          System.out.println("Nota atul da AV2: " + cadastroDeAluno.nota2);
+                          System.out.print("Informe a nota atualizada da AV2: ");
+                          novoAV2 = ler.nextFloat();
+                          cadastroDeAluno.setNota2(novoAV2);
+                          System.out.println("Nota da AV2 atualizada!\n");
+                          menu();
+                      }
+                      case 3 -> {
+                          System.out.println("Nota atul da AV3: " + cadastroDeAluno.nota3);
+                          System.out.print("Informe a nota atualizada da AV3: ");
+                          novoAV3 = ler.nextFloat();
+                          cadastroDeAluno.setNota3(novoAV3);
+                          System.out.println("Nota da AV3 Atualizada!\n");
+                          menu();
+                      }
+                  }
+
+              } else {
+                  System.out.println("Aluno nao encontrado! Por favor, informe uma Matricula valida.");
+                  modificarNotasDeAlunos();
+              }
+
+
+          }
     }
 }
 }       
